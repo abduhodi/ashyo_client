@@ -6,13 +6,18 @@ import { createPinia } from "pinia";
 import ElementPlus from "element-plus";
 import "element-plus/dist/index.css";
 
+import VueAwesomePaginate from "vue-awesome-paginate";
+import "vue-awesome-paginate/dist/style.css";
+
 import App from "./App.vue";
 import router from "./router";
 
 const app = createApp(App);
 
-app.use(ElementPlus);;
+app.use(VueAwesomePaginate);
+app.use(ElementPlus);
 app.use(createPinia());
 app.use(router);
 
 app.mount("#app");
+console.log(new Object());
