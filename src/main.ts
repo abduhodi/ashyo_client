@@ -20,4 +20,4 @@ app.use(createPinia());
 app.use(router);
 
 app.mount("#app");
-console.log(new Object());
+app.mount("#app");
