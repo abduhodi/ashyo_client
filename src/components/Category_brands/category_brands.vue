@@ -44,6 +44,7 @@
         </div>
 
         <div class="muzlatkich flex justify-end items-end">
+          <button><h1>Muzlatgichlar</h1></button>
           <img
             src="../../assets/images/category_brands/muzlatkich.svg"
             alt="muzlatgich"
@@ -58,7 +59,7 @@
       </div>
 
       <div class="katta_muzlatgich flex justify-end items-end">
-        <button><h1>Katta muzlatgich</h1></button>
+        
         <img
           src="../../assets/images/category_brands/katta_muzlatkich.svg"
           alt="katta_muzlatgich"
@@ -115,7 +116,8 @@
   height: 249px;
   flex-shrink: 0;
   border-radius: 7px;
-  background: url(<path-to-image>), lightgray 50% / cover no-repeat;
+  background-color: #676D86;
+  padding: 20px;
   position: relative;
 }
 
@@ -151,6 +153,7 @@
   background: #8f8f8f;
   border-top-left-radius: 7px;
   border-bottom-left-radius: 7px;
+  position: relative;
 }
 
 .katta_muzlatgich {
@@ -160,6 +163,7 @@
   border-top-right-radius: 8px;
   border-top-left-radius: 8px;
   border-bottom-right-radius: 8px;
+  
 }
 
 h1 {
