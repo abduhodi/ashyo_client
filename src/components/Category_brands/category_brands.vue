@@ -59,7 +59,6 @@
       </div>
 
       <div class="katta_muzlatgich flex justify-end items-end">
-        
         <img
           src="../../assets/images/category_brands/katta_muzlatkich.svg"
           alt="katta_muzlatgich"
@@ -116,7 +115,7 @@
   height: 249px;
   flex-shrink: 0;
   border-radius: 7px;
-  background-color: #676D86;
+  background-color: #676d86;
   padding: 20px;
   position: relative;
 }
@@ -163,7 +162,6 @@
   border-top-right-radius: 8px;
   border-top-left-radius: 8px;
   border-bottom-right-radius: 8px;
-  
 }
 
 h1 {

@@ -2,6 +2,9 @@ import { createRouter, createWebHistory } from "vue-router";
 import Brands from "../components/Brands/brands.vue";
 import Category_brands from "../components/Category_brands/category_brands.vue";
 import Headphone from "../components/Headphone/headphone.vue";
+import Payment from "../components/Payment/payment.vue";
+import Ashyo from "../components/Ashyo/ashyo.vue";
+import Basket from "../components/Basket/basket.vue";
 import auth from "./auth/auth";
 import user from "./user/user";
 
@@ -24,6 +27,21 @@ const router = createRouter({
       path: "/category_brands",
       name: "category_brands",
       component: Category_brands,
+    },
+    {
+      path: "/payment",
+      name: "payment",
+      component: Payment,
+    },
+    {
+      path: "/ashyo",
+      name: "ashyo",
+      component: Ashyo,
+    },
+    {
+      path: "/basket",
+      name: "basket",
+      component: Basket,
     },
   ],
 });
