@@ -7,12 +7,14 @@ import Ashyo from "../components/Ashyo/ashyo.vue";
 import Basket from "../components/Basket/basket.vue";
 import auth from "./auth/auth";
 import user from "./user/user";
+import admin from "./admin/admin";
 
 const router = createRouter({
-  history: createWebHistory(),
+  history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     auth,
     user,
+    admin,
     {
       path: "/headphone",
       name: "headphone",
