@@ -49,8 +49,8 @@
   cursor: pointer;
 }
 
-.artel:hover {
-}
+// .artel:hover {
+// }
 
 .iphone {
   display: inline-flex;

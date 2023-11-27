@@ -27,7 +27,7 @@
               class="w-[188px] h-[66px] bg-[#EBEFF3] rounded-lg gap-3 flex items-center justify-center"
             >
               <img
-                src="src/assets/img/app_store.png"
+                src="../../assets/images/footer/app_store.png"
                 class="w-[35px] m-[2px]"
                 alt=""
               />
@@ -37,7 +37,7 @@
               class="w-[188px] h-[66px] bg-[#EBEFF3] rounded-lg gap-3 flex items-center justify-center"
             >
               <img
-                src="src/assets/img/play_market.png"
+                src="../../assets/images/footer/play_market.png"
                 class="w-[35px] m-[2px] remove.bg"
                 alt=""
               />
