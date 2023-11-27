@@ -8,6 +8,7 @@
     <carusel :data="[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]" />
     <headphone />
     <carusel :data="[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]" />
+    <FooterVue/>
   </div>
 </template>
 
@@ -17,6 +18,8 @@ import brands from "@/components/Brands/brands.vue";
 import category_brands from "@/components/Category_brands/category_brands.vue";
 import headphone from "@/components/Headphone/headphone.vue";
 import Carusel from "@/components/cards/Carusel.vue";
+// import Footer from "@/components/footer/Footer.vue"
+import FooterVue from "@/components/footer/Footer.vue";
 </script>
 
 <style scoped></style>
