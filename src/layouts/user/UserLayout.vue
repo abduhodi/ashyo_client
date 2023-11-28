@@ -1,13 +1,14 @@
 <template>
-  <div>
+  <div class="container mx-auto">
     <h1>User layout</h1>
     <header />
-    <brands />
+    <router-view />
+    <!-- <brands />
     <carusel :data="[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]" />
     <category_brands />
     <carusel :data="[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]" />
     <headphone />
-    <carusel :data="[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]" />
+    <carusel :data="[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]" /> -->
   </div>
 </template>
 

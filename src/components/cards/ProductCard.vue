@@ -1,5 +1,5 @@
 <template>
-  <div class="w-1/6 h-[450px] flex flex-col gap-4 select-none">
+  <div class="w-[230px] h-[450px] flex flex-col gap-4 select-none">
     <div
       class="h-[320px] w-full rounded-lg bg-[#EBEFF3] flex justify-center items-center relative overflow-hidden select-none"
     >

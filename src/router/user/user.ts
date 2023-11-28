@@ -1,5 +1,5 @@
 export default {
-  path: "/",
+  path: "/home",
   name: "main_layout",
   component: () => import("@/layouts/user/UserLayout.vue"),
   meta: {
@@ -7,5 +7,17 @@ export default {
     requiresAuth: false,
     requiresAdmin: false,
   },
-  children: [],
+  children: [
+    {
+      path: "/products",
+      name: "products_view",
+      component: () => import("@/views/user/ProductsView.vue"),
+      meta: {
+        child: "products",
+        requiresAuth: false,
+        requiresAdmin: false,
+        children: [],
+      },
+    },
+  ],
 };
