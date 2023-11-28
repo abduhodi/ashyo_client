@@ -71,7 +71,8 @@ import {
   mdiHeart,
 } from "@mdi/js";
 import { ref, defineProps } from "vue";
-import { IProduct } from "../../types";
+import {type IProduct } from "../../types";
+
 const liked = ref(false);
 
 const setLiked = () => {
