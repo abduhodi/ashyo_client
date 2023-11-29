@@ -4,7 +4,7 @@
       class="overall flex flex-col md:flex-row items-center justify-evenly relative"
     >
       <img
-        class="headphone"
+        class="headphone translate-y-8"
         src="../../assets/images/headphone/headphone.svg"
         alt="HeadPhonee"
       />
@@ -55,7 +55,6 @@
     background: rgb(51, 51, 48);
     color: white;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-    border: 1px solid;
   }
 
   p {

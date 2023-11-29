@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from "vue-router";
 import Brands from "../components/Brands/brands.vue";
 import Category_brands from "../components/Category_brands/category_brands.vue";
 import Headphone from "../components/Headphone/headphone.vue";
+import Harid from "../components/Payment/harid.vue";
 import Payment from "../components/Payment/payment.vue";
 import Ashyo from "../components/Ashyo/ashyo.vue";
 import Basket from "../components/Basket/basket.vue";
@@ -31,6 +32,11 @@ const router = createRouter({
       component: Category_brands,
     },
     {
+      path: "/harid",
+      name: "harid",
+      component: Harid,
+    },
+    {
       path: "/payment",
       name: "payment",
       component: Payment,
@@ -45,6 +51,7 @@ const router = createRouter({
       name: "basket",
       component: Basket,
     },
+
   ],
 });
 

@@ -1,9 +1,9 @@
 export default {
   path: "/",
-  name: "product_card",
-  component: () => import("@/components/cards/Carusel.vue"),
+  name: "main_layout",
+  component: () => import("@/layouts/user/UserLayout.vue"),
   meta: {
-    child: "card",
+    child: "main_layout",
     requiresAuth: false,
     requiresAdmin: false,
   },

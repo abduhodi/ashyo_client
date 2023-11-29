@@ -39,15 +39,16 @@
         </div>
 
         <div class="tv pr-[20px] flex justify-end relative rounded-lg">
-          <button><h1>Tv</h1></button>
+          <button><h1>Televizor</h1></button>
           <img src="../../assets/images/category_brands/tv.svg" alt="tv" />
         </div>
 
-        <div class="muzlatkich flex justify-end items-end">
+        <div class="muzlatkich flex justify-end items-end relative">
           <button><h1>Muzlatgichlar</h1></button>
           <img
             src="../../assets/images/category_brands/muzlatkich.svg"
             alt="muzlatgich"
+            class="absolute -right-16"
           />
         </div>
       </div>
@@ -124,7 +125,7 @@
   width: 431px;
   height: 249px;
   flex-shrink: 0;
-  background: url(<path-to-image>), lightgray 50% / cover no-repeat;
+  background: url(<path-to-image>), #ceaf75 50% / cover no-repeat;
 }
 
 .konditsoner {
