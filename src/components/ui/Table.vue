@@ -3,7 +3,7 @@
     <thead class="bg-color1 text-[14px] uppercase font-normal text-white">
       <tr>
         <th
-          class="py-4 pr-5 text-left"
+          class="py-4 px-5 text-left"
           v-for="(title, index) in header"
           :key="index"
         >
@@ -25,7 +25,7 @@
         v-for="(item, index) in data"
         :key="index"
       >
-        <td class="pr-5" v-for="(col, ind) in header" :key="ind">
+        <td class="px-5" v-for="(col, ind) in header" :key="ind">
           <slot :name="`body_${col.value}`" :item="item">
             {{ item[col.value] }}
           </slot>
@@ -35,21 +35,11 @@
   </table>
 </template>
 
-<script setup>
-// import { useRouter } from "vue-router";
-// const router = useRouter();
+<script setup lang="ts">
 const props = defineProps({
   header: Array,
   data: Array,
 });
-
-const selectAll = (val) => {
-  // console.log(val.target.checked);
-};
-
-// const selectOne = (id) => {
-//   router.push({ path: `/student/${id}` });
-// };
 </script>
 
 <style lang="scss" scoped></style>

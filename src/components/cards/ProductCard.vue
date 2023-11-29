@@ -1,6 +1,6 @@
 <template>
   <div
-    class="w-[] md:w-[48%] lg:w-[31.5%] h-fit flex flex-col gap-4 select-none"
+    class="w-[] md:w-[48%] lg:w-[31.5%] xl:w-[17.2%] h-fit flex flex-col gap-4 select-none"
   >
     <div
       class="h-[250px] w-full rounded-lg bg-[#EBEFF3] flex justify-center items-center relative overflow-hidden select-none"
