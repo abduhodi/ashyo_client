@@ -22,7 +22,9 @@ import {
   mdiSpeedometer,
   mdiStorefrontOutline,
   mdiShape,
-mdiGoogleDrive 
+  mdiGoogleDrive,
+  mdiSale,
+  mdiClipboardText,
 } from "@mdi/js";
 
 const AdminMenu = [
@@ -59,7 +61,21 @@ const AdminMenu = [
     name: "brands",
     label: "Brands",
     keys: "brands",
-    icon: mdiGoogleDrive ,
+    icon: mdiGoogleDrive,
+  },
+  {
+    path: "/sales",
+    name: "sales",
+    label: "Sales",
+    keys: "sales",
+    icon: mdiSale,
+  },
+  {
+    path: "/orders",
+    name: "orders",
+    label: "Orders",
+    keys: "orders",
+    icon: mdiClipboardText,
   },
   {
     path: "/profile",

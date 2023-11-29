@@ -24,8 +24,7 @@
         ></svg-icon>
       </span>
       <span class="text-white text-[14px] font-thin"
-        >{{ profileStore?.user?.first_name }}
-        {{ profileStore?.user?.last_name }}</span
+        >{{ "Eshonov" }} {{ "Bahodir" }}</span
       >
       <div class="open_menu">
         <svg-icon
