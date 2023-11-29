@@ -44,7 +44,7 @@
 </template>
 
 <script setup lang="ts">
-import ProductCard from "../../components/cards/ProductCard.vue";
+import ProductCard from '@/components/cards/ProductCard.vue'
 import { ref, type Ref } from "vue";
 import { type IProduct } from "../../types";
 const product: Ref<IProduct> = ref({

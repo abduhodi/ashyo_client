@@ -1,11 +1,12 @@
 export default {
   path: "/admin",
-  name: "admin_page",
-  component: () => import("@/views/admin/Admin.vue"),
-  meta: {
-    child: "admin",
-    requiresAuth: true,
-    requiresAdmin: true,
-  },
-  children: [],
+  name: "admin",
+  component: () => import("@/layouts/admin/AdminLayout.vue"),
+  children: [
+    {
+      path: "/dashboard",
+      name: "admin_dashboard",
+      component: () => import("@/views/admin/CategoryView.vue"),
+    },
+  ],
 };

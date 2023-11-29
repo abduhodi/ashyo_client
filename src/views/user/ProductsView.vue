@@ -1,6 +1,6 @@
 <template>
   <div class="w-full flex gap-5 items-start">
-    <div class="w-1/5 bg-[#EBEFF3] p-5 rounded-lg">
+    <div class="w-[25%] bg-[#EBEFF3] p-5 rounded-lg">
       <div class="">
         <h2 class="mb-3 font-medium">Narx [so'm]</h2>
         <div class="flex justify-between gap-2">
@@ -26,7 +26,7 @@
     </div>
     <div class="w-4/5">
       <div class="w-full flex flex-wrap gap-5 items-start justify-between">
-        <product-card v-for="item in 10" :key="item" class="mb-5" />
+        <product-card v-for="item in 10" :key="item" class="m" />
       </div>
       <div class="my-10">
         <vue-awesome-paginate

@@ -14,9 +14,9 @@
 
 <script setup lang="ts">
 import Header from "@/components/headers/Header.vue";
-import brands from "@/components/Brands/brands.vue";
-import category_brands from "@/components/Category_brands/category_brands.vue";
-import headphone from "@/components/Headphone/headphone.vue";
+import Brands from "@/components/Brands/brands.vue";
+import Category_brands from "@/components/Category_brands/category_brands.vue";
+import Headphone from "@/components/Headphone/headphone.vue";
 import Carusel from "@/components/cards/Carusel.vue";
 </script>
 

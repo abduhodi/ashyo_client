@@ -4,12 +4,14 @@ module.exports = {
   theme: {
     container: {
       center: true,
-      padding: '130px'
+      // padding: "100px",
     },
     extend: {
       colors: {
         text: "#06172D",
-        bgSingle: "#ebeff3"
+        bgSingle: "#ebeff3",
+        color1: "#12486B",
+        color_bg: "#E7EDF0",
       },
     },
   },

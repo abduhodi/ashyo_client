@@ -1,7 +1,9 @@
 <template>
-  <div class="w-[230px] h-[450px] flex flex-col gap-4 select-none">
+  <div
+    class="w-[] md:w-[48%] lg:w-[31.5%] h-fit flex flex-col gap-4 select-none"
+  >
     <div
-      class="h-[320px] w-full rounded-lg bg-[#EBEFF3] flex justify-center items-center relative overflow-hidden select-none"
+      class="h-[250px] w-full rounded-lg bg-[#EBEFF3] flex justify-center items-center relative overflow-hidden select-none"
     >
       <div
         class="w-full h-full duration-200 cursor-pointer scale-90 hover:scale-105 flex justify-center items-center"
@@ -62,7 +64,6 @@
 </template>
 
 <script setup lang="ts">
-// @ts-ignore
 import SvgIcon from "@jamescoyle/vue-icon";
 import {
   mdiScaleUnbalanced,
@@ -71,7 +72,7 @@ import {
   mdiHeart,
 } from "@mdi/js";
 import { ref, defineProps } from "vue";
-import {type IProduct } from "../../types";
+import { type IProduct } from "../../types";
 
 const liked = ref(false);
 

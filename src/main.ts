@@ -5,12 +5,12 @@ import { createPinia } from "pinia";
 import ElementPlus from "element-plus";
 import "element-plus/dist/index.css";
 
+//@ts-ignore
 import VueAwesomePaginate from "vue-awesome-paginate";
 import "vue-awesome-paginate/dist/style.css";
 
 import App from "./App.vue";
 import router from "./router";
-// import "@fontawesome/fontawesome-free/css/all.css";
 
 const app = createApp(App);
 
