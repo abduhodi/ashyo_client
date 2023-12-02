@@ -1,6 +1,6 @@
 <template>
-  <div class="flex w-[100%] mb-[70px] mt-[70px] items-start justify-center">
-    <div class="w-[1180px] flex gap-[100px]">
+  <div class="flex w-[100%] mb-[30px] mt-[70px] items-start justify-center">
+    <div class="container flex gap-[100px]">
       <div class="flex-col">
         <h2 class="font-bold mb-4">Bizning ijtimoiy tarmoqlarda</h2>
         <div class="flex gap-2">

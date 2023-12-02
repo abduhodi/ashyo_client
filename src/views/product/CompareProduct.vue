@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container mt-10">
     <h3 class="text-[#06172D] font-[Roboto] font-bold text-[32px] mb-10">
       Mahsulotlarni taqqoslash
     </h3>
@@ -44,7 +44,7 @@
 </template>
 
 <script setup lang="ts">
-import ProductCard from '@/components/cards/ProductCard.vue'
+import ProductCard from "@/components/cards/ProductCard.vue";
 import { ref, type Ref } from "vue";
 import { type IProduct } from "../../types";
 const product: Ref<IProduct> = ref({

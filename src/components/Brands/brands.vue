@@ -1,6 +1,6 @@
 <template>
-  <div class="w-[100%] flex items-center justify-center mb-[4%]">
-    <div class="w-[1180px] h-[275px] m-[20px] flex">
+  <div class="w-[100%] flex items-center justify-center">
+    <div class="container h-[275px] flex">
       <div>
         <div class="artel mb-[8px]">
           <img src="../../assets/images/brands/artel.svg" alt="artel" />

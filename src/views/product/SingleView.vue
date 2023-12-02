@@ -1,12 +1,12 @@
 <template>
-  <div class="container">
+  <div class="container mt-14">
     <div>
       <h1 class="text-[text] font-[Roboto] text-[32px] font-bold">
         Смартфон Xiaomi 12 Lite 8/128Gb
       </h1>
 
-      <div class="w-100 flex my-9 gap-8 justify-between">
-        <div class="left_side w-[50%] flex flex-row justify-between">
+      <div class="w-[100%] flex my-9 gap-8 justify-between">
+        <div class="left_side w-[70%] flex flex-row justify-between">
           <div class="briefly w-[22%] h-[430px] overflow-y-scroll">
             <div
               class="briefly_box w-100 h-[120px] border rounded overflow-hidden mb-3 cursor-pointer select-none"
@@ -22,7 +22,7 @@
             </div>
           </div>
           <div
-            class="main_pic w-[73%] h-[430px] bg-blue-600 border rounded overflow-hidden object-cover relative select-none"
+            class="main_pic w-[73%] h-[430px] border rounded overflow-hidden object-cover relative select-none"
           >
             <img
               :src="getCurrentImageUrl()"
@@ -136,7 +136,7 @@
           </div>
         </div>
         <div v-if="!productAbout">
-          <div class="view_window h-44 overflow-y-auto">
+          <div class="view_window max-h-[500px] overflow-y-auto">
             <div
               v-for="(comment, index) in product.comments"
               :key="index"
@@ -156,8 +156,14 @@
                   >
                     {{ comment.last_name }} {{ comment.last_name }}
                   </h4>
-                  <p class="text-[#999999] font-[Roboto] text-3 font-light mb-2 mt-4 ">{{ comment.date }}</p>
-                  <p class="text-[#515D6C] font-[Roboto] text-4 font-normal">{{ comment.text }}</p>
+                  <p
+                    class="text-[#999999] font-[Roboto] text-3 font-light mb-2 mt-4"
+                  >
+                    {{ comment.date }}
+                  </p>
+                  <p class="text-[#515D6C] font-[Roboto] text-4 font-normal">
+                    {{ comment.text }}
+                  </p>
                 </div>
               </div>
             </div>

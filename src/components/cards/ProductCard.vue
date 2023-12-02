@@ -1,6 +1,6 @@
 <template>
   <div
-    class="w-[] md:w-[48%] lg:w-[31.5%] xl:w-[17.2%] h-fit flex flex-col gap-4 select-none"
+    class="md:w-[48%] lg:w-[31.5%] xl:w-[20.2%] h-fit flex flex-col gap-4 select-none"
   >
     <div
       class="h-[250px] w-full rounded-lg bg-[#EBEFF3] flex justify-center items-center relative overflow-hidden select-none"
@@ -14,18 +14,25 @@
         v-if="liked"
         type="mdi"
         :path="mdiHeartOutline"
-        class="absolute top-5 right-6 text-[#545D6A]"
+        class="absolute top-5 right-5 text-[#545D6A] cursor-pointer"
         @click="setLiked"
       ></svg-icon>
       <svg-icon
         v-else
         type="mdi"
         :path="mdiHeart"
-        class="absolute top-5 right-6 text-red-600"
+        class="absolute top-5 right-5 text-red-600 cursor-pointer"
         @click="setLiked"
       ></svg-icon>
+      <span
+        class="text-red-600 text-sm bg-white rounded-md font-medium px-3 py-1 absolute top-5 left-5"
+        >Aksiyada</span
+      >
     </div>
-    <p class="text-[#545D6A] text-[14px] font-normal w-full">
+    <p
+      class="text-[#545D6A] text-[14px] font-normal w-full text-start hover:cursor-pointer hover:underline"
+      @click="goto(1)"
+    >
       Смартфон Xiaomi 12 Lite 8/128Gb Қора kamera 48/68 px
     </p>
     <div class="flex justify-between items-end gap-[10px]">
@@ -34,9 +41,9 @@
       >
         <span class="text-[18px] font-bold">69 999 UZS</span>
         <span
-          class="text-[12px] font-normal bg-[#F02C961A] px-[10px] py-[7px] text-[#F02C96] rounded-[3px]"
+          class="text-[12px] font-normal bg-[#F02C961A] px-[10px] py-[7px] text-[#F02C96] rounded-[3px] text-start"
         >
-          6 oy / 1 200 000 UZS</span
+          6 oy / 12 000 UZS</span
         >
       </div>
       <div class="flex justify-center items-center gap-[10px]">
@@ -71,13 +78,18 @@ import {
   mdiShoppingOutline,
   mdiHeart,
 } from "@mdi/js";
-import { ref, defineProps } from "vue";
+import { ref } from "vue";
+import { useRouter } from "vue-router";
 import { type IProduct } from "../../types";
-
+const router = useRouter();
 const liked = ref(false);
 
 const setLiked = () => {
   liked.value = !liked.value;
+};
+
+const goto = (id) => {
+  router.push(`/products/${id}`);
 };
 
 const props = defineProps<IProduct>();
