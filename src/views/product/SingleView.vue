@@ -1,8 +1,8 @@
 <template>
   <div class="container mt-14">
-    <div>
+    <div v-if="Object.keys(store?.product || {}).length">
       <h1 class="text-[text] font-[Roboto] text-[32px] font-bold">
-        Смартфон Xiaomi 12 Lite 8/128Gb
+        {{ store?.product?.product_model?.name }}
       </h1>
 
       <div class="w-[100%] flex my-9 gap-8 justify-between">
@@ -10,7 +10,7 @@
           <div class="briefly w-[22%] h-[430px] overflow-y-scroll">
             <div
               class="briefly_box w-100 h-[120px] border rounded overflow-hidden mb-3 cursor-pointer select-none"
-              v-for="(item, index) in product.pictures"
+              v-for="(item, index) in store?.product?.product_media"
               :key="index"
               @click="changeMainImgIndex(index)"
             >
@@ -26,7 +26,7 @@
           >
             <img
               :src="getCurrentImageUrl()"
-              class="w-[100%] h-[430px] bg-green-500 transition ease-in-out duration-700"
+              class="w-[100%] h-[430px] bg-[#EBEFF3] transition ease-in-out duration-700"
               alt="mainImg "
             />
             <div
@@ -50,7 +50,7 @@
             Narxi:
             <span
               class="text-[#06172D] font-[Roboto] text-[32px] font-bold ml-[20px]"
-              >{{ product.price }}</span
+              >{{ store?.product?.price }}</span
             >
             <span
               class="text-[#06172D] font-[Roboto] text-[32px] font-bold ml-[20px]"
@@ -63,16 +63,27 @@
                 <p
                   class="py-5 text-center font-[Roboto] text-[16px] font-normal text-[#545D6A] bg-bgSingle select-none"
                 >
-                  Oyiga 456 999 uzs dan muddatli to’lov
+                  Oyiga {{ parseInt(store?.product?.price / 6) }} UZS dan
+                  muddatli to’lov
                 </p>
               </div>
               <div class="actions flex gap-4">
                 <button
+                  v-if="!store?.product?.inCart"
+                  @click="addCart(store?.product?.id)"
                   class="py-[18px] border-2 border-[#134E9B] rounded w-[50%] bg-white text-[#134E9B] font-normal text-4 font-[Roboto]"
                 >
                   Savatga qo‘shish
                 </button>
                 <button
+                  v-else
+                  @click="gotoCart"
+                  class="py-[18px] rounded w-[50%] bg-[#3AC86F] text-white font-normal text-4 font-[Roboto]"
+                >
+                  Savatga o'tish
+                </button>
+                <button
+                  @click="buy(store?.product?.id)"
                   class="py-[18px] border border-[#134E9B] rounded w-[50%] bg-[#134E9B] text-white font-normal text-4 font-[Roboto]"
                 >
                   Xarid qilish
@@ -122,30 +133,30 @@
         </div>
         <div v-if="productAbout">
           <div
-            v-for="(attribute, index) in product.attributes"
+            v-for="(attribute, index) in store?.product?.product_info"
             :key="index"
             class="product_attribute w-100 flex justify-between items-center border border-b-2 border-b-[#B6BABF] mb-2 pb-1 border-t-0 border-l-0 border-r-0 border-dashed"
           >
             <span class="text-4 text-[#545D6A] font-[Roboto] font-normal">{{
-              attribute.name
+              attribute?.attribute?.name
             }}</span>
             <span
               class="text-4 text-[#545D6A] font-[Roboto] font-normal w-[50%]"
-              >{{ attribute.value }}</span
+              >{{ attribute?.value }}</span
             >
           </div>
         </div>
         <div v-if="!productAbout">
           <div class="view_window max-h-[500px] overflow-y-auto">
             <div
-              v-for="(comment, index) in product.comments"
+              v-for="(comment, index) in store?.product?.comments"
               :key="index"
               class="flex w-100"
             >
               <div class="flex mb-10">
                 <div class="avatar w-32 h-32 mr-4">
                   <img
-                    :src="comment.user_avatar"
+                    :src="comment?.user_avatar"
                     alt="avatar"
                     class="object-contain w-100 h-100"
                   />
@@ -154,15 +165,15 @@
                   <h4
                     class="text-[#06172D] font-[Roboto] text-[18px] font-normal mb-2"
                   >
-                    {{ comment.last_name }} {{ comment.last_name }}
+                    {{ comment?.last_name }} {{ comment?.last_name }}
                   </h4>
                   <p
                     class="text-[#999999] font-[Roboto] text-3 font-light mb-2 mt-4"
                   >
-                    {{ comment.date }}
+                    {{ comment?.date }}
                   </p>
                   <p class="text-[#515D6C] font-[Roboto] text-4 font-normal">
-                    {{ comment.text }}
+                    {{ comment?.text }}
                   </p>
                 </div>
               </div>
@@ -182,83 +193,24 @@ import ClockIcon from "../../components/icons/ClockIcon.vue";
 import ShopIcon from "../../components/icons/ShopIcon.vue";
 import LeftIcon from "../../components/icons/LeftIcon.vue";
 import type { Ref } from "vue";
-import { ref } from "vue";
+import { ref, onMounted } from "vue";
+import { productStore } from "@/stores/product";
+import { useRoute, useRouter } from "vue-router";
 
-const product: Ref<IProduct> = ref({
-  price: "2 470 000",
-  pictures: [
-    {
-      url: "https://w7.pngwing.com/pngs/569/473/png-transparent-xiaomi-mi-12-lite-phone.png",
-    },
-    {
-      url: "https://d3cd3hu9wl72jo.cloudfront.net/2.d/preview/e/3/e3716764_0e650a3a_Xiaomi-12-Lite-Black.png",
-    },
-    {
-      url: "https://mi-krsk.ru/image/cache/catalog/00=egor/0011/12lite/4635c7de_5ce5_4130_bddc_f90df9e55309%E2%80%94kopija(3)-800x800.jpg",
-    },
-    {
-      url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRIEvTbRuL9DTHbUFmnZsdQqCGqsp1-QTys9g&usqp=CAU",
-    },
-    {
-      url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTbSUHYHgRQUT5PxK7V49-H-vc9_YhmXgxuOA&usqp=CAU",
-    },
-  ],
-  attributes: [
-    {
-      name: "Brand",
-      value: "Redmi",
-    },
-    {
-      name: "SIM kartalar soni",
-      value: 2,
-    },
-    {
-      name: "O'lchamlari",
-      value: "75,09х155,11х8,28",
-    },
-    {
-      name: "Modeli",
-      value: "Redmi Note 12",
-    },
-    {
-      name: "Akumlyator sig'imi",
-      value: "4000 Amp",
-    },
-    {
-      name: "Yadrolar soni",
-      value: 8,
-    },
-    {
-      name: "Tezkor xotira RAM",
-      value: "8 GB",
-    },
-    {
-      name: "Ichki xotira ROM",
-      value: "128 GB",
-    },
-    {
-      name: "Protsessor",
-      value: "MediaTek Helio P35 (MT6765)",
-    },
-  ],
-  comments: [
-    {
-      date: "September 3, 2022",
-      user_avatar:
-        "https://static.vecteezy.com/system/resources/previews/019/896/008/original/male-user-avatar-icon-in-flat-design-style-person-signs-illustration-png.png",
-      first_name: "Ergeniy",
-      last_name: "Viktorovich",
-      text: "The most inconvenient application written with the left heel. The interface is awkward. Putting something up for sale is as difficult as possible. You need to go in the tab in the masonry in the hidden tabs in the buttons. Kick-ass",
-    },
-    {
-      date: "September 3, 2022",
-      user_avatar:
-        "https://static.vecteezy.com/system/resources/previews/019/896/008/original/male-user-avatar-icon-in-flat-design-style-person-signs-illustration-png.png",
-      first_name: "Ergeniy",
-      last_name: "Viktorovich",
-      text: "The most inconvenient application written with the left heel. The interface is awkward. Putting something up for sale is as difficult as possible. You need to go in the tab in the masonry in the hidden tabs in the buttons. Kick-ass",
-    },
-  ],
+const route = useRoute();
+const router = useRouter();
+const store = productStore();
+
+const addCart = async (id: number) => {
+  await store.addCart(id);
+};
+
+const gotoCart = () => {
+  router.push("/cart");
+};
+
+onMounted(async () => {
+  await store.getSingleProduct(route.params.id);
 });
 
 const mainImgIndex: Ref<number> = ref(0);
@@ -269,11 +221,13 @@ const changeMainImgIndex = (index: number) => {
 };
 
 const getCurrentImageUrl = (): string => {
-  return product.value.pictures[mainImgIndex.value].url;
+  return store?.product?.product_media[mainImgIndex.value].url;
 };
 
 const slide = (to: Slide): void => {
-  const picturesLength: Ref<number> = ref(product.value.pictures.length - 1);
+  const picturesLength: Ref<number> = ref(
+    store?.product?.product_media?.length - 1
+  );
 
   switch (to) {
     case Slide.left:
@@ -291,21 +245,6 @@ const changeView = (index: number) => {
   if (index) productAbout.value = true;
   else productAbout.value = false;
 };
-
-interface IProduct {
-  price: string;
-  pictures: {
-    url: string;
-  }[];
-  attributes: { name: string; value: string | number }[];
-  comments: {
-    date: string;
-    user_avatar: string;
-    first_name: string;
-    last_name: string;
-    text: string;
-  }[];
-}
 
 enum Slide {
   "right",

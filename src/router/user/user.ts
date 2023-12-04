@@ -1,5 +1,6 @@
 export default {
   path: "/",
+  redirect: "/home",
   name: "main_layout",
   component: () => import("@/layouts/user/UserLayout.vue"),
   meta: {

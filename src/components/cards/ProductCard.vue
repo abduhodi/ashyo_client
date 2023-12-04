@@ -8,42 +8,46 @@
       <div
         class="w-full h-full duration-200 cursor-pointer scale-90 hover:scale-105 flex justify-center items-center"
       >
-        <img src="@/assets/images/airpods.png" alt="airpods" class="" />
+        <img
+          :src="data?.product_media[1]?.url"
+          :alt="data?.product_card?.name"
+        />
       </div>
       <svg-icon
-        v-if="liked"
+        v-if="data?.liked"
         type="mdi"
-        :path="mdiHeartOutline"
-        class="absolute top-5 right-5 text-[#545D6A] cursor-pointer"
-        @click="setLiked"
+        :path="mdiHeart"
+        class="absolute top-5 right-5 text-red-600 cursor-pointer"
+        @click="setLiked(data?.id)"
       ></svg-icon>
       <svg-icon
         v-else
         type="mdi"
-        :path="mdiHeart"
-        class="absolute top-5 right-5 text-red-600 cursor-pointer"
-        @click="setLiked"
+        :path="mdiHeartOutline"
+        class="absolute top-5 right-5 text-[#545D6A] cursor-pointer"
+        @click="setLiked(data?.id)"
       ></svg-icon>
       <span
+        v-if="data?.sale"
         class="text-red-600 text-sm bg-white rounded-md font-medium px-3 py-1 absolute top-5 left-5"
         >Aksiyada</span
       >
     </div>
     <p
       class="text-[#545D6A] text-[14px] font-normal w-full text-start hover:cursor-pointer hover:underline"
-      @click="goto(1)"
+      @click="goto(data?.id)"
     >
-      Смартфон Xiaomi 12 Lite 8/128Gb Қора kamera 48/68 px
+      {{ data?.product_model?.name }}
     </p>
     <div class="flex justify-between items-end gap-[10px]">
       <div
         class="flex flex-col w-[150px] justify-center items-start gap-[10px]"
       >
-        <span class="text-[18px] font-bold">69 999 UZS</span>
+        <span class="text-[18px] font-bold">{{ data?.price }} UZS</span>
         <span
           class="text-[12px] font-normal bg-[#F02C961A] px-[10px] py-[7px] text-[#F02C96] rounded-[3px] text-start"
         >
-          6 oy / 12 000 UZS</span
+          6 oy / {{ parseInt(data?.price / 6) }} UZS</span
         >
       </div>
       <div class="flex justify-center items-center gap-[10px]">
@@ -57,11 +61,19 @@
           ></svg-icon>
         </span>
         <span
+          @click="addCart(data)"
           class="bg-[#134E9B] rounded-[6px] px-[12px] py-[10px] hover:bg-[#1e5dae] cursor-pointer duration-150"
         >
           <svg-icon
+            v-if="!data?.inCart"
             type="mdi"
             :path="mdiShoppingOutline"
+            class="text-white w-5 h-5"
+          ></svg-icon>
+          <svg-icon
+            v-else
+            type="mdi"
+            :path="mdiTrashCanOutline"
             class="text-white w-5 h-5"
           ></svg-icon>
         </span>
@@ -77,22 +89,37 @@ import {
   mdiHeartOutline,
   mdiShoppingOutline,
   mdiHeart,
+  mdiTrashCanOutline,
 } from "@mdi/js";
-import { ref } from "vue";
+import { ref, onMounted } from "vue";
 import { useRouter } from "vue-router";
 import { type IProduct } from "../../types";
-const router = useRouter();
-const liked = ref(false);
+import { productStore } from "@/stores/product";
 
-const setLiked = () => {
-  liked.value = !liked.value;
+const store = productStore();
+const router = useRouter();
+
+const setLiked = async (id: number) => {
+  await store.saveProduct(id);
+};
+
+onMounted(async () => {});
+
+const addCart = async (item: any) => {
+  if (!item.inCart) {
+    await store.addCart(item?.id);
+    item.inCart = true;
+  } else {
+    await store.deleteCart(item?.id);
+    item.inCart = false;
+  }
 };
 
 const goto = (id) => {
   router.push(`/products/${id}`);
 };
 
-const props = defineProps<IProduct>();
+const props = defineProps<{ data: {} }>();
 </script>
 
 <style scoped></style>

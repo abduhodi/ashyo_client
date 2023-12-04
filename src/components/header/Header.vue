@@ -20,7 +20,7 @@
             </span>
           </div>
           <span>
-            <router-link to="/ashyo">About us</router-link>
+            <router-link to="#">About us</router-link>
           </span>
           <span>
             <router-link to="#">Products</router-link>
@@ -154,12 +154,13 @@
               class="text-[#545D6A]"
             ></svg-icon>
             <span
+              v-if="store?.saved?.length"
               class="bg-[red] text-white text-sm w-5 h-5 rounded-full flex justify-center items-center absolute -top-2 -right-2 z-10"
-              >1</span
+              >{{ store?.saved?.length }}</span
             >
           </div>
           <div
-            class="bg-[#EBEFF3] p-3 rounded-md cursor-pointer"
+            class="bg-[#EBEFF3] p-3 rounded-md cursor-pointer relative"
             @click="goto('/cart')"
           >
             <svg-icon
@@ -167,6 +168,11 @@
               :path="mdiShoppingOutline"
               class="text-[#545D6A]"
             ></svg-icon>
+            <span
+              v-if="store?.cart?.length"
+              class="bg-[red] text-white text-sm w-5 h-5 rounded-full flex justify-center items-center absolute -top-2 -right-2 z-10"
+              >{{ store?.cart?.length }}</span
+            >
           </div>
           <div
             class="bg-[#EBEFF3] p-3 rounded-md cursor-pointer"
@@ -196,7 +202,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, reactive } from "vue";
+import { ref, reactive, onMounted } from "vue";
 import {
   mdiAccountOutline,
   mdiShoppingOutline,
@@ -208,13 +214,19 @@ import {
 } from "@mdi/js";
 import SvgIcon from "@jamescoyle/vue-icon";
 import { useRoute, useRouter } from "vue-router";
+import { productStore } from "@/stores/product";
 
+const store = productStore();
 const route = useRoute();
 const router = useRouter();
 
 const value = ref();
 const options = [{ value: "smart", label: "smart" }];
 const open = ref(false);
+
+onMounted(async () => {
+  await Promise.all([store?.getSaved(), store?.getCart()]);
+});
 
 const clicked = () => {
   open.value = !open.value;

@@ -2,7 +2,7 @@
   <div class="mx-auto mt-5">
     <carousel :items-to-show="5.5">
       <slide v-for="(items, ind) in data" :key="ind">
-        <product-card style="width: 230px" />
+        <product-card :data="items" style="width: 230px" />
       </slide>
 
       <template #addons>
@@ -21,9 +21,7 @@ import ProductCard from "@/components/cards/ProductCard.vue";
 import type { IProduct } from "../../types";
 import { defineProps, onMounted, ref } from "vue";
 
-const props = defineProps<{
-  data: number[];
-}>();
+const props = defineProps<{ data: [] }>();
 onMounted(() => {});
 </script>
 
