@@ -43,6 +43,17 @@ export default {
       },
     },
     {
+      path: "/brands/:id",
+      name: "brands_product_view",
+      component: () => import("@/views/user/BrandsView.vue"),
+      meta: {
+        child: "products",
+        requiresAuth: false,
+        requiresAdmin: false,
+        children: [],
+      },
+    },
+    {
       path: "/comparison",
       name: "product_comparison",
       component: () => import("@/views/product/CompareProduct.vue"),

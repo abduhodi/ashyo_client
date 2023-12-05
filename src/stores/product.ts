@@ -8,6 +8,8 @@ export const productStore = defineStore("product_store", {
     cart: [] as any,
     saved: [] as any,
     views: [] as any,
+    categories: [] as any,
+    attributes: [] as any,
   }),
   actions: {
     async getProducts() {
@@ -55,23 +57,18 @@ export const productStore = defineStore("product_store", {
         if (prod?.length) {
           this.product.inCart = true;
         }
-        const saved = JSON.parse(localStorage.getItem("saved") ?? "[]");
         const cart = this.cart.map((item: any) => item?.product_id);
         this.products = this.products.map((item: any) => {
-          if (saved?.includes(item?.id)) item.liked = true;
-          else item.liked = false;
           if (cart?.includes(item?.id)) item.inCart = true;
-          else item.liked = false;
+          else item.inCart = false;
           return item;
         });
         this.views = this.views.map((item: any) => {
           if (cart?.includes(item?.id)) item.inCart = true;
           else item.inCart = false;
-          if (saved?.includes(item?.id)) item.liked = true;
-          else item.liked = false;
           return item;
         });
-        console.log(response);
+        console.log(this.views, "views");
       } catch (error) {
         console.log(error);
       }
@@ -105,9 +102,19 @@ export const productStore = defineStore("product_store", {
         this.cart.splice(ind, 1);
         localStorage.setItem(
           "cart",
-          JSON.stringify(this.cart.map((item: any) => item.id))
+          JSON.stringify(this.cart.map((item: any) => item.product_id))
         );
-        // const cart = JSON.parse(localStorage.getItem("cart") ?? "[]");
+        const cart = JSON.parse(localStorage.getItem("cart") ?? "[]");
+        this.products = this.products.map((item: any) => {
+          if (cart?.includes(item?.id)) item.inCart = true;
+          else item.inCart = false;
+          return item;
+        });
+        this.views = this.views.map((item: any) => {
+          if (cart?.includes(item?.id)) item.inCart = true;
+          else item.inCart = false;
+          return item;
+        });
       } catch (error) {
         console.log(error);
       }
@@ -162,7 +169,7 @@ export const productStore = defineStore("product_store", {
         });
         console.log(this.views);
         this.views = this.views.map((item: any) => {
-          if (saved?.includes(item?.product_id)) item.liked = true;
+          if (saved?.includes(item?.id)) item.liked = true;
           else item.liked = false;
           return item;
         });
@@ -202,6 +209,34 @@ export const productStore = defineStore("product_store", {
       try {
         const response: any = await productApi.viewed(id);
         console.log(response);
+      } catch (error) {
+        console.log(error);
+      }
+    },
+    async getCategories() {
+      try {
+        const response: any = await productApi.getCategories();
+        this.categories = [...response];
+        console.log(response);
+      } catch (error) {
+        console.log(error);
+      }
+    },
+    async getAttributes(id: number) {
+      try {
+        const response: any = await productApi.getAttributes(id);
+        this.attributes = [...response];
+        console.log(response);
+      } catch (error) {
+        console.log(error);
+      }
+    },
+    async getBrandProducts(id: number) {
+      try {
+        const response: any = await productApi.getBrandProducts(id);
+        this.products = response?.products;
+        console.log(response.products);
+        return response?.name;
       } catch (error) {
         console.log(error);
       }

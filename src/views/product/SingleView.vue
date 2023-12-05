@@ -16,7 +16,7 @@
             >
               <img
                 :src="item.url"
-                class="w-[100%] h-[100%]"
+                class="w-[100%] h-[100%] object-contain"
                 alt="breiflyImges"
               />
             </div>
@@ -26,7 +26,7 @@
           >
             <img
               :src="getCurrentImageUrl()"
-              class="w-[100%] h-[430px] bg-[#EBEFF3] transition ease-in-out duration-700"
+              class="w-[100%] h-[430px] bg-[#fff] transition ease-in-out duration-700 object-contain"
               alt="mainImg "
             />
             <div

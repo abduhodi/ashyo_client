@@ -6,11 +6,12 @@
       class="h-[250px] w-full rounded-lg bg-[#EBEFF3] flex justify-center items-center relative overflow-hidden select-none"
     >
       <div
-        class="w-full h-full duration-200 cursor-pointer scale-90 hover:scale-105 flex justify-center items-center"
+        class="w-full h-full duration-200 cursor-pointer scale-75 hover:scale-90 flex justify-center items-center"
       >
         <img
-          :src="data?.product_media[1]?.url"
+          :src="data?.product_media[0]?.url"
           :alt="data?.product_card?.name"
+          class="object-contain w-full h-full"
         />
       </div>
       <svg-icon
@@ -37,20 +38,24 @@
       class="text-[#545D6A] text-[14px] font-normal w-full text-start hover:cursor-pointer hover:underline"
       @click="goto(data?.id)"
     >
-      {{ data?.product_model?.name }}
+      {{
+        `${data?.product_model?.name}, ${data?.product_info
+          ?.map((item: any) => item?.value)
+          ?.join(", ")}`
+      }}
     </p>
-    <div class="flex justify-between items-end gap-[10px]">
-      <div
-        class="flex flex-col w-[150px] justify-center items-start gap-[10px]"
-      >
-        <span class="text-[18px] font-bold">{{ data?.price }} UZS</span>
+    <div class="flex w-full flex-col justify-between items-end gap-[10px]">
+      <div class="flex w-full justify-start items-start">
+        <span class="text-[18px] font-bold text-start"
+          >{{ data?.price }} UZS</span
+        >
+      </div>
+      <div class="flex w-full justify-between items-end">
         <span
           class="text-[12px] font-normal bg-[#F02C961A] px-[10px] py-[7px] text-[#F02C96] rounded-[3px] text-start"
         >
           6 oy / {{ parseInt(data?.price / 6) }} UZS</span
         >
-      </div>
-      <div class="flex justify-center items-center gap-[10px]">
         <span
           class="border border-[#EBEFF3] rounded-[6px] px-[12px] py-[10px] hover:bg-[#f5f5f5] cursor-pointer duration-150"
         >

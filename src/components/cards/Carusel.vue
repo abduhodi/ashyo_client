@@ -2,7 +2,7 @@
   <div class="mx-auto mt-5">
     <carousel :items-to-show="5.5">
       <slide v-for="(items, ind) in data" :key="ind">
-        <product-card :data="items" style="width: 230px" />
+        <product-card :data="items" style="width: 240px" />
       </slide>
 
       <template #addons>

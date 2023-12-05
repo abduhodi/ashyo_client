@@ -86,27 +86,28 @@
               <div class="w-1/2 bg-[#EBEFF3] py-10">
                 <ul class="flex flex-col gap-1">
                   <li
-                    v-for="category in categories"
-                    :key="category.id"
+                    v-for="category in store?.categories?.filter((item: any) => item?.parent_id == null)"
+                    :key="category?.id"
                     class="flex gap-4 cursor-pointer hover:bg-slate-200 px-8 py-3"
+                    @mouseover="getBrands(category?.id)"
                   >
-                    <img
-                      :src="`src/assets/images/menu/${category.icon}.svg`"
-                      alt="icon"
-                    />
-                    {{ category.name }}
+                    <img :src="category?.logo" alt="icon" />
+                    {{ category?.name }}
                   </li>
                 </ul>
               </div>
               <div class="w-full bg-[white] px-16 py-10 border">
                 <ul class="flex flex-col gap-5">
-                  <p class="font-bold">Smartfonlar</p>
+                  <!-- <p class="font-bold">Smartfonlar</p> -->
                   <li
-                    v-for="attribute in attributes"
+                    v-for="attribute in store?.attributes"
                     :key="attribute.id"
-                    class="flex gap-4"
+                    class="flex gap-4 hover:underline"
+                    @click="goto(`/brands/${attribute?.brand_id}`)"
                   >
-                    {{ attribute.name }}
+                    {{
+                      `${attribute?.brand?.name} ${attribute?.category?.name}`
+                    }}
                   </li>
                 </ul>
               </div>
@@ -190,7 +191,7 @@
     <div class="container mx-auto">
       <ol class="w-full flex justify-between items-center px-2">
         <li
-          v-for="item in categories"
+          v-for="item in store?.categories?.filter((item: any) => item?.parent_id == null)"
           :key="item.id"
           class="text-[#545D6A] hover:underline hover:text-black cursor-pointer"
         >
@@ -223,82 +224,28 @@ const router = useRouter();
 const value = ref();
 const options = [{ value: "smart", label: "smart" }];
 const open = ref(false);
+const isModalOpen = ref(false);
+const categories = ref();
 
 onMounted(async () => {
-  await Promise.all([store?.getSaved(), store?.getCart()]);
+  await Promise.all([
+    store?.getSaved(),
+    store?.getCart(),
+    store?.getCategories(),
+  ]);
 });
 
 const clicked = () => {
   open.value = !open.value;
 };
 
+const getBrands = async (id: number) => {
+  await store?.getAttributes(id);
+};
+
 const goto = (route) => {
   router.push(route);
 };
-
-const isModalOpen = ref(false);
-const categories = ref([
-  {
-    id: 1,
-    name: "Aksiyalar",
-    icon: "sale",
-    bool: false,
-  },
-  {
-    id: 2,
-    name: "Smartfonlar",
-    icon: "smartphone",
-    bool: false,
-  },
-  {
-    id: 3,
-    name: "Kiryuvish mashinalari",
-    icon: "machine",
-    bool: false,
-  },
-  {
-    id: 4,
-    name: "Telivizorlar",
-    icon: "tv",
-    bool: false,
-  },
-  {
-    id: 5,
-    name: "Kondetsionerlar",
-    icon: "air",
-    bool: false,
-  },
-  {
-    id: 6,
-    name: "Kompuyert va jihozlari",
-    icon: "laptop",
-    bool: false,
-  },
-  {
-    id: 7,
-    name: "Muzlatgichlar",
-    icon: "freezer",
-    bool: false,
-  },
-  {
-    id: 8,
-    name: "Chang yutgichlar",
-    icon: "washing_machine",
-    bool: false,
-  },
-]);
-
-const attributes = ref([
-  { id: 1, name: "Oppo smartfonlar" },
-  { id: 1, name: "Vivo smartfonlar" },
-  { id: 1, name: "Realmi smartfonlar" },
-  { id: 1, name: "Redmi smartfonlar" },
-  { id: 1, name: "Xiaomi smartfonlar" },
-  { id: 1, name: "Artel smartfonlar" },
-  { id: 1, name: "Samasung smartfonlar" },
-  { id: 1, name: "Iphone smartfonlar" },
-  { id: 1, name: "Nokia smartfonlar" },
-]);
 
 const toggleModal = () => {
   isModalOpen.value = !isModalOpen.value;

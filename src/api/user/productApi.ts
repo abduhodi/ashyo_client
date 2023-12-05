@@ -45,4 +45,16 @@ export const productApi = {
     const url = "views";
     return axiosClient.post(url, { product_id: id });
   },
+  async getCategories() {
+    const url = "categories";
+    return axiosClient.get(url);
+  },
+  async getAttributes(id: number) {
+    const url = "category-brand/" + id;
+    return axiosClient.get(url);
+  },
+  async getBrandProducts(id: number) {
+    const url = "brand/" + id;
+    return axiosClient.get(url);
+  },
 };
